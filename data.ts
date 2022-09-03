@@ -9,13 +9,13 @@ export const houseData = [
         id: 2,
         address: "Gärdslösa 33",
         type: "Apartment",
-        residentId: 1
+        residentId: 2
     },
     {
         id: 3,
         address: "Storgatan 90",
         type: "House",
-        residentId: 2
+        residentId: 1
     },
     {
         id: 4,
