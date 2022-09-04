@@ -13,7 +13,7 @@ app.use(express.json())
 app.get('/', (req, res) => {
   res.send(
     `If you want to see the houses, go to /houses endpoint. If you want to see the residents, go to /residents endpoint
-    If you want to see the houses first, click on the link below: <a href="/sike">Houses</a>
+    If you want to see the houses first, click on the link below: <a href="/sike">Click Here</a>
     `
     )
 })
@@ -64,7 +64,8 @@ app.post('/houses', (req, res) => {
             id: houses[houses.length - 1].id + 1,
             address: req.body.address,
             type: req.body.type,
-            residentId: req.body.residentId
+            residentId: req.body.residentId,
+            capacity: req.body.capacity
         }
         houses.push(newHouse)
         res.send(newHouse)
@@ -140,8 +141,11 @@ app.post('/residents', (req, res) => {
     if(typeof req.body.gender !== 'string'){
         errors.push("Gender must be a string or not found")
     }
+    if(req.body.capacity < 0 && req.body.capacity > 2) {
+        errors.push("Either you getting the house alone or with someone!")
+    }
 
-    if(errors.length === 0) {
+    if(errors.length === 0 && (req.body.capacity >= 2)) {
         const newResident = {
             id: residents[residents.length - 1].id + 1,
             name: req.body.name,
@@ -151,7 +155,7 @@ app.post('/residents', (req, res) => {
     residents.push(newResident)
     res.send(newResident)
     } else {
-        res.status(400).send({errors})
+        res.status(400).send({error: errors})
     }
 })
 
