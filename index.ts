@@ -1,6 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import { houseData, residentData } from './data'
+import "./index.css"
 
 let houses = houseData
 let residents = residentData
@@ -11,7 +12,18 @@ app.use(cors())
 app.use(express.json())
 
 app.get('/', (req, res) => {
-  res.send(`If you want to see the houses, go to /houses endpoint. If you want to see the residents, go to /residents endpoint`)
+  res.send(
+    `If you want to see the houses, go to /houses endpoint. If you want to see the residents, go to /residents endpoint
+    If you want to see the houses first, click on the link below: <a href="/sike">Houses</a>
+    `
+    )
+})
+
+app.get("/sike", (req, res) => {
+    res.send(`
+    <iframe className="" width="560" height="315" src="https://www.youtube.com/embed/SAKEem9yIB0?&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+    </iframe>
+    `)
 })
 
 app.get('/houses', (req, res) => {
