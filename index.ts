@@ -1,7 +1,6 @@
 import express from 'express'
 import cors from 'cors'
 import { houseData, residentData } from './data'
-import "./index.css"
 
 let houses = houseData
 let residents = residentData
